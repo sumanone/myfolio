@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suman Mandal – Recruiter View</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8f8f8;
+      color: #1a1a1a;
+      padding: 2rem 200px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #1a1a1a;
+      margin-left: 1rem;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    a {
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    h1, h2, h3 {
+      font-weight: 600;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+    }
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+    .info-block {
+      margin-bottom: 2rem;
+    }
+    ul, p {
+      line-height: 1.6;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #1a1a1a;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .project-item {
+      margin-bottom: 1rem;
+    }
+    .project-title {
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 1px solid #1a1a1a;
+      display: inline-block;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      /* Center content using flex */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background-color: #fff;
+      /* Remove margin, center with flex parent */
+      margin: 0;
+      padding: 2rem;
+      border: 1px solid #ccc;
+      width: 90%;
+      max-width: 650px;
+      position: relative;
+      border-radius: 6px;
+    }
+    .modal-content a {
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .modal-content a:hover {
+      text-decoration: underline;
+    }
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .profile-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 1rem 0;
+      border: 2px solid #1a1a1a;
+    }
+    .intro-section {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .icon {
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: #1a1a1a;
+      margin-right: 0.5rem;
+    }
+    .work-title { cursor: pointer; background: #f0f0f0; padding: 1rem; border-radius: 6px; margin-bottom: 0.2rem; transition: background 0.2s; }
+    .work-title:hover { background: #e0e0e0; }
+    .work-title h3 { margin: 0; display: flex; align-items: center; justify-content: space-between; }
+    .work-details { background: #fff; border: 1px solid #e0e0e0; border-radius: 0 0 6px 6px; margin-bottom: 1rem; padding: 1rem 1.5rem; }
+    .work-title-simple {
+      display: inline-block;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid #1a1a1a;
+      padding: 0.5rem 0 0.2rem 0;
+      margin-bottom: 0.2rem;
+      color: #1a1a1a;
+      transition: none;
+    }
+    .work-title-simple:hover {
+      color: #1a1a1a;
+      border-bottom: 2px solid #1a1a1a;
+      background: none;
+    }
+    .work-details-simple {
+      margin-bottom: 1rem;
+      margin-left: 1rem;
+      background: none;
+      border: none;
+      padding: 0.2rem 0 0.5rem 0.5rem;
+    }
+    @media (max-width: 800px) {
+      body {
+        padding: 2rem;
+      }
+      .intro-section {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div id="suman-mandal-nav" style="cursor:pointer;"><strong><i class="fa-solid fa-user icon"></i>Suman Mandal</strong></div>
+    <div>
+      <a href="#education"><i class="fa-solid fa-graduation-cap icon"></i>Education</a>
+      <a href="#projects"><i class="fa-solid fa-folder-open icon"></i>Projects</a>
+      <a href="#resume"><i class="fa-solid fa-file-lines icon"></i>Resume</a>
+      <a href="connect.html"><i class="fa-solid fa-envelope icon"></i>Connect</a>
+    </div>
+  </nav>
+
+  <div class="intro-section">
+    <img class="profile-photo" src="../assets/profilephotonotion.png" alt="Suman Mandal Profile" />
+    <div>
+      <h1><i class="fa-solid fa-hand-wave icon"></i>Welcome</h1>
+      <p>I'm Suman Mandal – a 21-year-old aspiring full-stack developer focused on clean UI/UX design and efficient backend architecture. I build tools for learners and communities, with a vision to make tech accessible and meaningful.</p>
+      <p>Through self-education, hands-on projects, and strategic learning, I've built a professional profile tailored for recruiters and collaborators.</p>
+    </div>
+  </div>
+
+  <section id="education">
+    <h2><i class="fa-solid fa-graduation-cap icon"></i>Education</h2>
+    <p><strong>BS(Hons) in Data Science</strong><br/> IIT Madras – 2025–2029</p>
+    <p>Focused on full-stack web development, software design, and micro SaaS product building alongside leading peer learning groups and GitHub-based collaboration.</p>
+  </section>
+
+  <section id="work-experiences">
+    <h2><i class="fa-solid fa-briefcase icon"></i>Work Experiences</h2>
+    <ul id="work-experiences-list" style="list-style: none; padding: 0;"></ul>
+  </section>
+
+  <section id="skills">
+    <h2><i class="fa-solid fa-code icon"></i>Skills</h2>
+    <ul>
+      <li><strong>Languages:</strong> HTML, CSS, JavaScript, Node.js</li>
+      <li><strong>Frontend:</strong> React, Tailwind CSS, Bootstrap</li>
+      <li><strong>Backend:</strong> Express.js, MongoDB, Firebase, REST APIs</li>
+      <li><strong>Tools:</strong> Git, GitHub, VS Code, Postman, Figma</li>
+      <li><strong>Practices:</strong> Agile, SEO Basics, Responsive Design</li>
+      <li><strong>Soft Skills:</strong> Time Management, Communication, Collaboration</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2><i class="fa-solid fa-folder-open icon"></i>Projects</h2>
+    <div id="project-list"></div>
+  </section>
+
+  <section id="certifications">
+    <h2><i class="fa-solid fa-certificate icon"></i>Certifications</h2>
+    <ul id="certifications-list"></ul>
+  </section>
+
+  <section id="opensource">
+    <h2><i class="fa-solid fa-code-branch icon"></i>Open Source Contributions</h2>
+    <ul id="opensource-list"></ul>
+  </section>
+
+  <section id="blogs">
+    <h2><i class="fa-solid fa-pen-nib icon"></i>Blogs & Articles</h2>
+    <ul id="blogs-list"></ul>
+  </section>
+
+  <section id="resume">
+    <h2><i class="fa-solid fa-file-lines icon"></i>Resume & CV</h2>
+    <a class="button" href="https://example.com/suman_resume.pdf" target="_blank">Download Resume (PDF)</a>
+    <a class="button" href="https://example.com/suman_cv.pdf" target="_blank">Download CV</a>
+  </section>
+
+  <!-- Modals -->
+  <div id="modals-container"></div>
+
+  <footer style="margin-top: 3rem; text-align: center; padding: 2rem 0; border-top: 1px solid #ccc;">
+    <p style="font-size: 1.1rem; margin-bottom: 1rem;">Thank you for visiting my professional portfolio! If you'd like to collaborate, have questions, or just want to connect, feel free to reach out.</p>
+    <a class="button" href="connect.html" style="font-size: 1.1rem;">Let's Connect</a>
+  </footer>
+  <footer style="text-align:center; margin-top:2rem; color:#888; font-size:0.95rem;">
+    coded by Suman · © 2025
+  </footer>
+
+  <script>
+    // Suman Mandal nav click handler
+    document.getElementById('suman-mandal-nav').onclick = function() {
+      // Always redirect smoothly to the main homepage
+      window.location.replace('/index.html');
+    };
+
+    function openModal(id) {
+      // Close all modals first
+      document.querySelectorAll('.modal').forEach(m => {
+        m.style.display = 'none';
+        m.onclick = null;
+      });
+      const modal = document.getElementById(id);
+      modal.style.display = 'flex';
+      modal.onclick = function (e) {
+        if (e.target === modal) {
+          closeModal(id);
+        }
+      };
+    }
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      modal.style.display = 'none';
+      // Remove the click handler to avoid stacking
+      modal.onclick = null;
+    }
+
+    // Load and render work experiences from JSON
+    fetch('jsonfiles/work_experiences.json')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('work-experiences-list');
+        list.innerHTML = '';
+        data.forEach((exp, idx) => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <span class="work-title-simple" onclick="toggleWorkDetails('work${idx}')">
+              ${exp.position} – ${exp.company}
+            </span>
+            <div class="work-details-simple" id="work${idx}" style="display:none;">
+              <p><strong>${exp.start_date} – ${exp.end_date || 'Present'}</strong></p>
+              <p>${exp.location}</p>
+              <ul>${exp.description ? `<li>${exp.description}</li>` : ''}</ul>
+            </div>
+          `;
+          list.appendChild(li);
+        });
+      });
+
+    function toggleWorkDetails(id) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Dynamic project loading
+    fetch('jsonfiles/projects.json')
+      .then(res => res.json())
+      .then(projects => {
+        const projectList = document.getElementById('project-list');
+        const modalsContainer = document.getElementById('modals-container');
+        projectList.innerHTML = '';
+        modalsContainer.innerHTML = '';
+        projects.slice(0, 3).forEach(project => {
+          // Project list item
+          const item = document.createElement('div');
+          item.className = 'project-item';
+          item.innerHTML = `<span class="project-title" onclick="openModal('${project.id}')">${project.title}</span>`;
+          projectList.appendChild(item);
+          // Modal
+          const modal = document.createElement('div');
+          modal.id = project.id;
+          modal.className = 'modal';
+          modal.style.display = 'none'; // Ensure hidden by default
+          modal.innerHTML = `
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('${project.id}')">&times;</span>
+              <h2>${project.title}</h2>
+              <p>${project.description}</p>
+              <p>${project.live && project.live !== '#' ? `<a href="${project.live}" target="_blank">Live Demo</a>` : ''}</p>
+              <p>${project.source ? `<a href="${project.source}" target="_blank">Source Code</a>` : ''}</p>
+            </div>
+          `;
+          modalsContainer.appendChild(modal);
+        });
+        if (projects.length > 3) {
+          const more = document.createElement('div');
+          more.innerHTML = '<a href="project/projects.html">... more</a>';
+          projectList.appendChild(more);
+        }
+      });
+
+    // Dynamic certifications loading
+    fetch('jsonfiles/certifications.json')
+      .then(res => res.json())
+      .then(certs => {
+        const certList = document.getElementById('certifications-list');
+        certList.innerHTML = '';
+        certs.slice(0, 3).forEach(cert => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${cert.title}</strong> (${cert.issuer}, ${cert.date})<br>${cert.description}`;
+          certList.appendChild(li);
+        });
+        if (certs.length > 3) {
+          const more = document.createElement('li');
+          more.innerHTML = '<a href="#">... more</a>';
+          certList.appendChild(more);
+        }
+      });
+
+    // Dynamic open source contributions loading
+    fetch('jsonfiles/open_source_contributions.json')
+      .then(res => res.json())
+      .then(contribs => {
+        const osList = document.getElementById('opensource-list');
+        osList.innerHTML = '';
+        contribs.slice(0, 3).forEach(contrib => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${contrib.title}</strong> – <a href="${contrib.link}" target="_blank">${contrib.project}</a><br>${contrib.description}`;
+          osList.appendChild(li);
+        });
+        if (contribs.length > 3) {
+          const more = document.createElement('li');
+          more.innerHTML = '<a href="#">... more</a>';
+          osList.appendChild(more);
+        }
+      });
+
+    // Dynamic blogs & articles loading (fetch from blogs_articles.json as before)
+    fetch('jsonfiles/blogs_articles.json')
+      .then(res => res.json())
+      .then(blogs => {
+        const blogList = document.getElementById('blogs-list');
+        blogList.innerHTML = '';
+        blogs.slice(0, 3).forEach(blog => {
+          const li = document.createElement('li');
+          const link = blog.link || blog.url || '#';
+          li.innerHTML = `<strong><a href="${link}" target="_blank">${blog.title}</a></strong>${blog.date ? ' (' + blog.date + ')' : ''}${blog.description ? '<br>' + blog.description : blog.summary ? '<br>' + blog.summary : ''}`;
+          blogList.appendChild(li);
+        });
+        if (blogs.length > 3) {
+          const more = document.createElement('li');
+          more.innerHTML = '<a href="../personalsite/blog/index.html">... more</a>';
+          blogList.appendChild(more);
+        }
+      });
+  </script>
+</body>
+</html>
