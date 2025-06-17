@@ -1,0 +1,31 @@
+[
+  {
+    "title": "How My Village School Taught Me About Truth",
+    "summary": "Beginner-friendly guide to start coding...",
+    "url": "http://127.0.0.1:5500/homepage/personalsite/blog/blogs.html?blog=blog1.md"
+  },
+  {
+    "title": "Example Blog or Article",
+    "link": "https://example.com/blog",
+    "date": "2024-01-01",
+    "description": "Description of the blog or article."
+  },
+ {
+    "title": "How My Village School Taught Me About Truth",
+    "summary": "Beginner-friendly guide to start coding...",
+    "url": "http://127.0.0.1:5500/homepage/personalsite/blog/blogs.html?blog=blog1.md"
+  },
+  {
+    "title": "akacnkaknsknsk",
+    "link": "https://example.com/blog",
+    "date": "2024-01-01",
+    "description": "Description of the blog or article."
+  },
+  {
+    "title": "snjanjsjcs",
+    "link": "https://example.com/blog",
+    "date": "2024-01-01",
+    "description": "Description of the blog or article."
+  }
+
+]
