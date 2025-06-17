@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suman's Personal Journal</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Space+Grotesk:wght@400;500&family=Quicksand:wght@400;500&family=Comfortaa:wght@400;500&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      background-color: #f9f8f6;
+      color: #222;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 0;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    #content-wrapper {
+      flex: 1 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 500;
+      font-size: 24px;
+      margin-bottom: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    p.subtitle {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      margin-top: 1;
+      line-height: 1.5;
+      letter-spacing: 0.5px;
+      color: #636E72;
+      opacity: 0.95;
+      max-width: 660px;
+      margin-bottom: 8px;
+    }
+
+    .nav-grid {
+      display: flex;
+      gap: 0.8em;
+      margin: 8px 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-item {
+      border: 1px solid #2D3436;
+      padding: 0.7em;
+      border-radius: 6px;
+      width: 100px;
+      background-color: #f9f8f6;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-item:hover {
+      transform: translateY(-2px) rotate(2deg);
+      background-color: #f0f0f0;
+    }
+
+    .nav-item img {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 0.3em;
+      opacity: 0.8;
+    }
+
+    .nav-item div {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      color: #2D3436;
+    }
+
+    .quote {
+      font-family: 'Caveat', cursive;
+      font-size: 28px;
+      margin: 6px 0;
+      color: #636E72;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .about {
+      max-width: 650px;
+      margin: 6px auto;
+    }
+
+    .about p {
+      font-family: 'Quicksand', sans-serif;
+      line-height: 1.5;
+      margin: 4px 0;
+      text-align: justify;
+      text-justify: inter-word;
+      color: #222;
+      font-size: 16px;
+    }
+
+    a.back {
+      font-family: 'Space Grotesk', sans-serif;
+      text-decoration: none;
+      color: #222;
+      font-size: 14px;
+      margin-top: 6px;
+      transition: color 0.2s ease;
+    }
+
+    a.back:hover {
+      color: #636E72;
+    }
+
+    a.back-to-gallery {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      font-size: 14px;
+      color: #636E72;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a.back-to-gallery:hover {
+      color: #222;
+    }
+
+    .know-more-btn {
+      display: inline-block;
+      margin-top: 1em;
+      padding: 0.5em 1.2em;
+      background: #0077cc;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .know-more-btn:hover {
+      background: #005fa3;
+    }
+
+    footer {
+      margin-top: auto;
+      width: 100%;
+      text-align: center;
+      font-size: 15px;
+      color: #888;
+      padding: 18px 0 6px 0;
+      font-family: 'Quicksand', sans-serif;
+      background: none;
+    }
+  </style>
+</head>
+<body>
+    <div id="content-wrapper">
+      <h1>Hi, I'm Suman Mandal</h1>
+      <p class="subtitle">This is where I keep the other half of myself — drawings, stories, unsent letters, and poems.     </p>
+
+      <div class="about">
+        <p>
+          I'm a curious soul with a deep love for expression — whether it's through words, art, or ideas. I believe every emotion is a story waiting to be told.
+        </p>
+        <p>
+          When I'm not working on technical projects, I immerse myself in writing poetry, capturing fleeting thoughts and feelings.My paintings often reflect the beauty and chaos of my inner world.<br><br>
+
+          I dream of a future where creativity and technology meet — building tools that empower others to express themselves. My goal is to live a meaningful life driven by connection, honesty, and inspiration.
+          <a href="about.html" style="color:#000;text-decoration:underline;background:none;border:none;padding:0;margin-left:4px;font:inherit;cursor:pointer;">…read more</a>
+        </p>
+      </div>
+
+      <div class="nav-grid">
+        <div class="nav-item" onclick="location.href='painting/index.html'">
+          <img src="https://img.icons8.com/ios-filled/50/image.png" alt="Painting Gallery">
+          <div>Painting Gallery</div>
+        </div>
+        <div class="nav-item" onclick="location.href='poem/index.html'">
+          <img src="https://img.icons8.com/ios-filled/50/quill-with-ink.png" alt="Poems">
+          <div>Poems</div>
+        </div>
+        <div class="nav-item" onclick="location.href='story/index.html'">
+          <img src="https://img.icons8.com/ios-filled/50/open-book--v1.png" alt="Stories">
+          <div>Stories</div>
+        </div>
+        <div class="nav-item" onclick="location.href='blog/index.html'">
+          <img src="https://img.icons8.com/ios-filled/50/document.png" alt="Blogs">
+          <div>Blogs</div>
+        </div>
+      </div>
+
+      <div class="quote">"Everything I write or draw is a note to myself."</div>
+
+      <a class="back" href="/">Back to Main Site</a>
+    </div>
+    <footer>
+      coded by Suman · © 2025
+    </footer>
+  </body>
+</html>
