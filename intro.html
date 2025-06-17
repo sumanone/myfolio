@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles with new font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* Off-white background */
+            overflow: hidden; /* Prevent scrollbars during animations */
+        }
+
+        /* Video animation with a constant speed, now faster */
+        #character-video {
+            position: absolute;
+            width: 300px; 
+            height: auto;
+            left: 50%;
+            filter: grayscale(1);
+            pointer-events: none;
+            /* KEY CHANGE: Animation duration reduced to 8 seconds for a quicker intro */
+            animation: dropAndWalk 8s linear forwards;
+        }
+
+        @keyframes dropAndWalk {
+            0% {
+                top: -400px;
+                left: 50%;
+                transform: translateX(-50%);
+                opacity: 1;
+            }
+            31.25% { /* Corresponds to 2.5s in an 8s animation */
+                top: calc(100vh - 210px);
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            95% {
+                top: calc(100vh - 210px);
+                left: 115%;
+                transform: translateX(-50%);
+                opacity: 1;
+            }
+            100% {
+                top: calc(100vh - 210px);
+                left: 120%;
+                transform: translateX(-50%);
+                opacity: 0;
+            }
+        }
+
+        /* Text container and letter styling */
+        #text-container {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+        }
+
+        .letter {
+            display: inline-block;
+            font-size: 4rem; 
+            font-weight: 400; /* Lighter font weight for a softer look */
+            color: #222; /* A softer black */
+            position: relative;
+            opacity: 0; 
+            animation: fadeInAndSettle 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInAndSettle {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .scatter {
+            animation: fadeOutAndScatter 1.5s cubic-bezier(0.8, 0.2, 0.8, 0.8) forwards;
+        }
+
+        @keyframes fadeOutAndScatter {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+        }
+        
+        /* KEY ADDITION: Floating motes for subtle background animation */
+        .mote {
+            position: absolute;
+            background-color: #d1d5db; /* A light grey color */
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(4px); /* Soft focus effect */
+            animation: drift 20s infinite linear;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translateX(-200px) translateY(-200px);
+                opacity: 0;
+            }
+            25% {
+                 opacity: 0.7;
+            }
+            75% {
+                 opacity: 0.7;
+            }
+            to {
+                transform: translateX(calc(100vw + 200px)) translateY(calc(100vh + 200px));
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="w-screen h-screen">
+
+    <div id="intro-container" class="relative w-full h-full">
+    
+        <!-- Container for background motes -->
+        <div id="motes-container"></div>
+
+        <!-- The walking person video -->
+        <video id="character-video" autoplay muted loop playsinline preload="auto">
+            <source src="https://raw.githubusercontent.com/sumanone/suman/docs/docs/assets/a7531b83140f4388a73f360452757738.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Container for the animated text -->
+        <div id="text-container">
+            <!-- Letters will be dynamically generated here -->
+        </div>
+
+    </div>
+
+    <script>
+        // Check if intro has already been shown
+        if (localStorage.getItem('introShown')) {
+            window.location.href = 'homepage/index.html'; // Redirect to main page
+        } else {
+            localStorage.setItem('introShown', 'true');
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const textContainer = document.getElementById('text-container');
+            const motesContainer = document.getElementById('motes-container');
+            const welcomeText = "Welcome to my world";
+            
+            // --- 1. Create and animate letters ---
+            welcomeText.split('').forEach((char, index) => {
+                const letterSpan = document.createElement('span');
+                letterSpan.classList.add('letter');
+
+                if (char === ' ') {
+                    letterSpan.innerHTML = '&nbsp;';
+                    letterSpan.style.width = '1rem';
+                } else {
+                    letterSpan.textContent = char;
+                }
+                
+                // Animation is now 8s, drop is 2.5s. Start text at 2s.
+                letterSpan.style.animationDelay = `${2 + index * 0.08}s`; 
+                
+                textContainer.appendChild(letterSpan);
+            });
+
+            // --- 2. Trigger the text to scatter away ---
+            // Animation is 8s long. We start scattering at 6s.
+            setTimeout(() => {
+                const letters = document.querySelectorAll('.letter');
+                letters.forEach((letter, index) => {
+                    letter.classList.add('scatter');
+                    letter.style.animationDelay = `${index * 0.06}s`;
+                });
+            }, 6000); // 6000 milliseconds = 6 seconds
+
+            // --- 3. Create background motes ---
+            const numberOfMotes = 5;
+            for (let i = 0; i < numberOfMotes; i++) {
+                const mote = document.createElement('div');
+                mote.classList.add('mote');
+                
+                const size = Math.random() * 20 + 10; // size between 10px and 30px
+                mote.style.width = `${size}px`;
+                mote.style.height = `${size}px`;
+
+                // Random starting position
+                mote.style.top = `${Math.random() * 100}vh`;
+                mote.style.left = `${Math.random() * 100}vw`;
+
+                // Random animation delay so they don't all start at once
+                mote.style.animationDelay = `${Math.random() * 20}s`;
+
+                motesContainer.appendChild(mote);
+            }
+        });
+    </script>
+</body>
+</html>

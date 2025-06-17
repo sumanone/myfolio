@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f2; /* more offwhite */
+      padding: 40px 100px;
+      color: #111;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .social-icons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 600px;
+      margin: 0 auto 60px;
+      font-weight: 500;
+      text-transform: lowercase;
+    }
+    .item {
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .item svg {
+      width: 20px;
+      height: 20px;
+      fill: #111;
+    }
+    .item a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: inherit;
+      font-size: inherit;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .item a:hover {
+      text-decoration: underline;
+    }
+    .form-and-info {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 60px;
+      max-width: 800px;
+      margin: 0 auto 60px;
+    }
+    .contact-form {
+      flex: 1;
+      min-width: 250px;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 10px;
+      font-size: 15px;
+      border: none;
+      border-bottom: 2px solid #000;
+      background: transparent;
+      outline: none;
+    }
+    .contact-form button {
+      padding: 10px 24px;
+      font-size: 15px;
+      background: #111;
+      color: #fafafa;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      width: fit-content;
+    }
+    .info {
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+      font-size: 14px;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+    .info label {
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: #444;
+      margin-top: auto;
+      background: #f5f5f2;
+      padding: 20px 0 10px 0;
+      width: 100%;
+    }
+    .nav {
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    .back-link {
+      color: #222;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: 'Space Grotesk', 'DM Sans', Arial, sans-serif;
+      font-size: 15px;
+      padding: 4px 0 4px 2px;
+      border-radius: 4px;
+      transition: background 0.15s;
+      background: none;
+      display: inline-block;
+    }
+    .back-link:hover {
+      background: #ececec;
+      color: #111;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav" style="text-align:left; margin-bottom:20px;">
+    <a href="#" onclick="window.history.back(); return false;" class="back-link" style="padding-left:200px;">&larr; back</a>
+  </div>
+
+  <div class="social-icons">
+    <div class="item">
+      <svg viewBox="0 0 24 24"><path d="M4.98 3.5C3.32 3.5 2 4.82 2 6.48c0 1.66 1.32 2.98 2.98 2.98 1.66 0 2.98-1.32 2.98-2.98C7.96 4.82 6.64 3.5 4.98 3.5zM2.4 8.9H7.6V21H2.4zM9.5 8.9h4.2v1.66h.06c.58-1.1 2-2.26 4.14-2.26 4.42 0 5.24 2.9 5.24 6.68V21H18V15.34c0-1.34-.03-3.06-1.86-3.06-1.86 0-2.15 1.45-2.15 2.95V21H9.5z"/></svg>
+      <a href="https://www.linkedin.com/in/sumanman" target="_blank" rel="noopener">linkedin</a>
+    </div>
+    <div class="item">
+      <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm5.25-3.5a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z"/></svg>
+      <a href="https://www.instagram.com/sumen.ai" target="_blank" rel="noopener">instagram</a>
+    </div>
+    <div class="item">
+      <svg viewBox="0 0 24 24"><path d="M23.954 4.569c-.885.39-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.949.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-2.717 0-4.924 2.207-4.924 4.924 0 .39.045.765.127 1.124-4.09-.205-7.719-2.165-10.148-5.144-.423.729-.666 1.577-.666 2.476 0 1.708.869 3.216 2.188 4.099-.807-.025-1.566-.247-2.228-.616v.062c0 2.385 1.693 4.374 3.946 4.827-.413.112-.849.171-1.296.171-.317 0-.626-.03-.928-.086.627 1.956 2.444 3.377 4.6 3.418-1.68 1.316-3.809 2.102-6.102 2.102-.396 0-.787-.023-1.175-.069 2.179 1.398 4.768 2.214 7.548 2.214 9.051 0 14-7.496 14-13.986 0-.21 0-.423-.015-.633.961-.695 1.8-1.562 2.46-2.549z"/></svg>
+      <a href="https://x.com/knowsumanM" target="_blank" rel="noopener">x (twitter)</a>
+    </div>
+    <div class="item">
+      <svg viewBox="0 0 24 24"><path d="M16.988 14.727c-.28-.14-1.667-.82-1.926-.915-.259-.094-.447-.14-.635.14-.186.28-.725.913-.889 1.101-.164.188-.33.21-.611.07-.28-.14-1.189-.435-2.26-1.384-.836-.745-1.401-1.666-1.564-1.948-.164-.28-.016-.435.122-.576.125-.125.28-.33.419-.495.14-.165.186-.28.28-.466.094-.187.047-.35-.023-.49-.07-.14-.635-1.52-.87-2.083-.23-.546-.464-.472-.635-.48-.164-.007-.35-.01-.535-.01-.187 0-.49.07-.748.35-.257.28-.98.958-.98 2.337 0 1.38 1.004 2.712 1.143 2.905.14.187 1.976 3.022 4.788 4.239.67.29 1.194.464 1.603.593.674.215 1.287.185 1.77.111.54-.08 1.667-.68 1.902-1.34.236-.66.236-1.227.165-1.34-.07-.117-.257-.187-.54-.327z"/></svg>
+      <a href="https://wa.me/919883132097" target="_blank" rel="noopener">whatsapp</a>
+    </div>
+    <div class="item">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.371 0 0 5.371 0 12c0 5.514 3.71 10.16 8.776 11.53.642.12.878-.279.878-.62 0-.307-.012-1.258-.018-2.282-3.572.776-4.324-1.72-4.324-1.72-.584-1.48-1.428-1.874-1.428-1.874-1.168-.798.088-.782.088-.782 1.292.091 1.972 1.327 1.972 1.327 1.148 1.97 3.014 1.401 3.75 1.071.118-.832.449-1.402.816-1.725-2.852-.324-5.85-1.427-5.85-6.352 0-1.403.502-2.55 1.325-3.448-.133-.326-.574-1.638.126-3.418 0 0 1.08-.345 3.54 1.316A12.29 12.29 0 0112 5.8c1.095.005 2.2.148 3.228.433 2.454-1.662 3.532-1.316 3.532-1.316.703 1.78.262 3.092.13 3.418.826.898 1.32 2.045 1.32 3.448 0 4.936-3.005 6.024-5.862 6.342.462.397.875 1.18.875 2.377 0 1.717-.015 3.102-.015 3.527 0 .345.23.745.887.618C20.29 22.153 24 17.514 24 12c0-6.629-5.371-12-12-12z"/></svg>
+      <a href="https://github.com/sumanone" target="_blank" rel="noopener">github</a>
+    </div>
+    <div class="item">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12c6.627 0 12-5.373 12-12S18.627 0 12 0zm1.662 20.44c-.276.056-.378-.119-.378-.265v-2.036c0-.692-.24-1.14-.508-1.37 1.665-.185 3.416-.826 3.416-3.727 0-.823-.294-1.495-.777-2.022.078-.189.337-.948-.075-1.976 0 0-.632-.201-2.07.77-.6-.166-1.242-.25-1.88-.254-.638.004-1.28.088-1.88.254-1.437-.971-2.07-.77-2.07-.77-.412 1.028-.153 1.787-.075 1.976-.483.527-.777 1.2-.777 2.022 0 2.896 1.747 3.544 3.41 3.732-.214.186-.407.515-.474.997-.427.193-1.512.523-2.18-.623 0 0-.395-.712-1.146-.764 0 0-.73-.009-.051.455 0 0 .49.23.83 1.097 0 0 .438 1.375 2.516.92v1.81c0 .144-.103.317-.382.265C5.44 18.85 3 15.716 3 12c0-4.97 4.03-9 9-9s9 4.03 9 9c0 3.716-2.44 6.85-5.338 8.44z"/></svg>
+      <a href="https://www.reddit.com/user/sumen4country/" target="_blank" rel="noopener">reddit</a>
+    </div>
+  </div>
+
+  <div class="form-and-info">
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <input type="text" name="fullname" placeholder="full name" required>
+      <input type="email" name="email" placeholder="email" required>
+      <textarea name="message" placeholder="message" required></textarea>
+      <button type="submit">contact us</button>
+    </form>
+
+    <div class="info">
+      <div>
+        <label>Contact:</label> 
+        <div>
+          <a href="mailto:social.sumanmandal@gmail.com" style="color:inherit;text-decoration:none;">personal.sumanmandal@gmail.com</a>
+        </div>
+      </div>
+      <div>
+        <label>Based in:</label> 
+        <div>
+          <a href="https://www.google.com/maps/search/?api=1&query=kormangla,+Bengaluru,+India,+560034" target="_blank" style="color:inherit;text-decoration:none;">kormangla, Bengaluru, India, 560034</a>
+        </div>
+      </div>
+    </div>
+
+  <div class="footer">Coded by Suman · © 2025</div>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('Thanks! I will get back to you soon.');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
