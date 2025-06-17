@@ -1,0 +1,21 @@
+[
+  {
+    "title": "How My Village School Taught Me About Truth",
+    "type": "internal",
+    "file": "blog1.md",
+    "date": "2025-06-15",
+    "filter": "Personal"
+  },
+  {
+    "title": "My Op-Ed in Telegraph",
+    "type": "external",
+    "url": "https://drive.google.com/your-file-link",
+    "date": "2025-06-10"
+  },
+  {
+    "title": "Cutout: Protest Story",
+    "type": "image",
+    "image": "cutout1.jpg",
+    "caption": "From Statesman, April 2024"
+  }
+]
