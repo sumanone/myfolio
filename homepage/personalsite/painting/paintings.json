@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "title": "Abstract Landscape",
+    "imageUrl": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&q=80",
+    "description": "A soft, textured abstract landscape in warm sunset tones."
+  },
+  {
+    "id": 2,
+    "title": "Moody City Rain",
+    "imageUrl": "https://images.unsplash.com/photo-1558980664-10e7170b9e62?auto=format&fit=crop&w=900&q=80",
+    "description": "An atmospheric, rainy city scene with reflective neon puddles."
+  },
+  {
+    "id": 3,
+    "title": "Charcoal Portrait",
+    "imageUrl": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=700&q=80",
+    "description": "A meditative charcoal-style portrait capturing expression and shadow."
+  },
+  {
+    "id": 4,
+    "title": "Bold Abstract Brushstrokes",
+    "imageUrl": "https://images.unsplash.com/photo-1526481280690-0fe0c1a1edc4?auto=format&fit=crop&w=1100&q=80",
+    "description": "Vibrant brushstrokes overlapping in dynamic, bold colors."
+  },
+  {
+    "id": 5,
+    "title": "Notion Doodle",
+    "imageUrl": "https://raw.githubusercontent.com/sumanone/suman/docs/docs/assets/notionphoto.png",
+    "description": "A minimalist Notion-style black and white doodle."
+  },
+  {
+  "id": 5,
+  "title": "SketchKeras Notion Visual",
+  "imageUrl": "https://raw.githubusercontent.com/sumanone/suman/docs/docs/assets/notionphoto.png",
+  "description": "A black-and-white Notion-style doodle representing the sketch generation workflow from the sketchKeras project."
+},
+  {
+    "id": 1,
+    "title": "City at Dusk",
+    "imageUrl": "https://raw.githubusercontent.com/sumanone/assets/main/image2.jpeg",
+    "description": "A dreamy cityscape as night begins to fall, lit by warm lights."
+  },
+  {
+    "id": 2,
+    "title": "Vintage Alley",
+    "imageUrl": "https://raw.githubusercontent.com/sumanone/assets/main/image1.jpeg",
+    "description": "A quiet, nostalgic alleyway with aged walls and soft lighting."
+  },
+  {
+    "id": 3,
+    "title": "Minimal Abstract Poster",
+    "imageUrl": "https://raw.githubusercontent.com/sumanone/assets/main/Untitled%20design.png",
+    "description": "A minimalist abstract design with simple shapes and muted tones."
+  }
+
+
+  
+]
