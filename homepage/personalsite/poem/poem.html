@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poem Viewer</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400&display=swap" />
+  <style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: #f8f7f4;
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      color: #111;
+      line-height: 1.6;
+    }
+    .back {
+      margin-bottom: 2rem;
+    }
+    .back a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 400;
+      font-size: 0.9rem;
+      border-bottom: 1px dotted #aaa;
+      padding-bottom: 0.25rem;
+      transition: color 0.2s;
+    }
+    .back a:hover {
+      color: #333;
+    }
+    .poem-title {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5rem;
+      color: #222;
+    }
+    .poem-date {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    .poem-content {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #333;
+    }
+    .poem-content p {
+      margin: 0 0 1.5rem 0;
+    }
+    .poem-content p:last-child {
+      margin-bottom: 0;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      .poem-title {
+        font-size: 1.5rem;
+      }
+      .poem-content {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="back">
+    <a href="index.html">&larr; Back to archive</a>
+  </div>
+  <div class="poem-title" id="poem-title"></div>
+  <div class="poem-date" id="poem-date"></div>
+  <div class="poem-content" id="poem-content">Loading...</div>
+
+  <script>
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    async function loadPoem() {
+      const poemFile = getQueryParam('poem');
+      console.log('Loading poem file:', poemFile);
+      
+      if (!poemFile) {
+        document.getElementById('poem-content').textContent = "Poem not found.";
+        return;
+      }
+
+      try {
+        const response = await fetch(`poems/${poemFile}`);
+        console.log('Fetch response status:', response.status);
+        
+        if (!response.ok) throw new Error("File not found");
+        const text = await response.text();
+        console.log('Loaded poem text:', text.substring(0, 100) + '...');
+
+        const lines = text.split('\n');
+        // Remove # from title and trim
+        let title = lines[0].replace(/^#\s*/, '').trim();
+        console.log('Extracted title:', title);
+        document.getElementById('poem-title').textContent = title;
+
+        // Get date from the JSON file
+        const poemsResponse = await fetch('poems/index.json');
+        const poems = await poemsResponse.json();
+        const poemData = poems.find(p => p.file === poemFile);
+        if (poemData && poemData.date) {
+          document.getElementById('poem-date').textContent = poemData.date;
+        }
+
+        // Format poem content
+        const content = lines.slice(1)
+          .filter(line => line.trim()) // Remove empty lines
+          .join('\n')
+          .trim();
+        
+        // Convert markdown-style line breaks to HTML
+        const formattedContent = content
+          .replace(/\n\n/g, '</p><p>') // Double newlines become paragraph breaks
+          .replace(/\n/g, '<br>'); // Single newlines become line breaks
+        
+        document.getElementById('poem-content').innerHTML = `<p>${formattedContent}</p>`;
+      } catch (err) {
+        console.error('Error loading poem:', err);
+        document.getElementById('poem-content').textContent = "Failed to load poem: " + err.message;
+      }
+    }
+
+    loadPoem();
+  </script>
+</body>
+</html>
