@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orbithive – Autonomous Space Debris Mitigation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8f8f7;
+      --text: #18181b;
+      --muted: #888;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 1.5rem 2.5rem 1.5rem;
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 0 2.5rem 0;
+    }
+    .hero-title {
+      font-size: 2.7rem;
+      font-weight: 600;
+      margin-bottom: 1.1rem;
+      letter-spacing: -0.5px;
+      line-height: 1.08;
+    }
+    .hero-desc {
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 2.2rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      line-height: 1.6;
+    }
+    section {
+      margin-bottom: 2.7rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #eee;
+    }
+    section:last-of-type {
+      border-bottom: none;
+    }
+    .section-title {
+      font-size: 1.18rem;
+      font-weight: 500;
+      margin-bottom: 1.1rem;
+      color: var(--text);
+      text-align: left;
+      letter-spacing: -0.2px;
+      line-height: 1.2;
+      margin-top: 0.5em;
+    }
+    .section-content {
+      font-size: 1.01rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      background: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0 0 1.5em 0;
+    }
+    ul {
+      margin: 0 0 1.2rem 1.2rem;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 0.45em;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    .muted {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1.2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.98rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      opacity: 0.7;
+      border: none;
+    }
+    /* Remove box-shadow and border-radius for images, make them blend in */
+    .section-content img, .section-content .inline-img, .section-content .img-float-right, .section-content .img-float-left {
+      max-width: 100%;
+      margin: 1.1rem auto 1.1rem auto;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: none;
+      padding: 0;
+      height: auto;
+      display: block;
+      float: none !important;
+      opacity: 1 !important;
+    }
+    .section-content .inline-img, .section-content .img-float-right, .section-content .img-float-left {
+      display: block;
+      margin: 1.1rem auto;
+      max-width: 100%;
+      min-width: 0;
+      object-fit: contain;
+      height: auto;
+      float: none !important;
+    }
+    @media (max-width: 700px) {
+      .section-content .img-float-right,
+      .section-content .img-float-left {
+        float: none;
+        display: block;
+        margin: 1.1rem auto;
+        max-width: 100%;
+      }
+      .section-content[style*="display:flex"] {
+        flex-direction: column !important;
+        gap: 1.2em !important;
+      }
+      .section-content img {
+        max-width: 100% !important;
+        margin: 0 auto 1.2rem auto !important;
+      }
+    }
+    @keyframes starTwinkle {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+    .animated-title {
+      position:relative;
+      display:inline-block;
+      overflow:hidden;
+      color:#111;
+    }
+    .animated-title:after {
+      content:'';
+      display:block;
+      width:0;
+      height:1.2px;
+      background:#111;
+      position:absolute;
+      left:0;bottom:0;
+      transition:width 0.7s cubic-bezier(.77,0,.18,1);
+    }
+    .animated-title.in-view:after {
+      width:100%;
+    }
+    .fact-card {
+      background:#fff;
+      border:1.5px solid #111;
+      border-radius:7px;
+      padding:1.1em 1.7em;
+      min-width:120px;
+      text-align:center;
+      margin-bottom:1em;
+      box-shadow:0 2px 0 #111, 0 0 0 #fff;
+      transition:box-shadow 0.3s;
+    }
+    .fact-card:hover {
+      box-shadow:0 6px 0 #111, 0 0 0 #fff;
+    }
+    .fact-num {
+      font-size:1.7em;
+      font-weight:700;
+      color:#111;
+      margin-bottom:0.2em;
+      font-family:'Space Grotesk',monospace;
+    }
+    .fact-label {
+      font-size:1em;
+      color:#222;
+      font-family:'Space Grotesk',monospace;
+    }
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(.77,0,.18,1), transform 0.8s cubic-bezier(.77,0,.18,1);
+    }
+    .fade-in-section.in-view {
+      opacity: 1;
+      transform: none;
+    }
+    .section-content.card-style {
+      background: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0 0 1.5em 0;
+      margin-bottom: 1.5em;
+    }
+    .section-content.card-style ul {
+      margin-left: 1.2em;
+    }
+    .parallax {
+      will-change: transform;
+      transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+    }
+    .parallax-img {
+      will-change: transform;
+      transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+    }
+    .section-content img:not(.parallax-img), .section-content svg:not(.parallax-img) {
+      transition: none;
+    }
+    .contact-card {
+      background: #fff;
+      border: 2px solid #111;
+      border-radius: 12px;
+      box-shadow: 0 4px 0 #111, 0 0 0 #fff;
+      padding: 2em 2.5em;
+      margin: 2.5em auto 2em auto;
+      max-width: 420px;
+      text-align: center;
+      position: relative;
+    }
+    .contact-card a {
+      color: #18181b;
+      text-decoration: none;
+    }
+    .contact-card a:hover, .contact-card a:active {
+      color: #111;
+      text-decoration: underline;
+    }
+    .fade-in-img {
+      opacity: 0;
+      transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
+    }
+    .fade-in-img.loaded {
+      opacity: 1;
+    }
+    .section-content-img-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 2em;
+      flex-wrap: wrap;
+      margin-bottom: 1.2em;
+    }
+    .section-content-img-row img,
+    .section-content-img-row svg {
+      max-width: 260px;
+      min-width: 140px;
+      width: 100%;
+      height: auto;
+      margin: 0 0 1.2rem 0;
+      flex: 1;
+      display: block;
+      opacity: 1 !important;
+    }
+    .section-content-img-row .img-text {
+      flex: 2;
+      min-width: 220px;
+    }
+    /* Ensure fade-in-img is visible if JS fails */
+    .fade-in-img {
+      opacity: 1;
+      transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
+    }
+    .fade-in-img.loaded {
+      opacity: 1;
+    }
+    @media (max-width: 700px) {
+      .section-content-img-row {
+        flex-direction: column;
+        gap: 1.2em;
+      }
+      .section-content-img-row img,
+      .section-content-img-row svg {
+        max-width: 100% !important;
+        margin: 0 auto 1.2rem auto !important;
+      }
+    }
+    /* Animation for solar system logo */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .space {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: transparent;
+    }
+    .sun {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 24px;
+      height: 24px;
+      background: black;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    }
+    .orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border: 1px dashed rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .planet {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: black;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    .orbit1 { width: 48px; height: 48px; }
+    .planet1 { width: 5px; height: 5px; animation: orbit1 3s linear infinite; }
+
+    .orbit2 { width: 80px; height: 80px; }
+    .planet2 { width: 7px; height: 7px; animation: orbit2 6s linear infinite; }
+
+    .orbit3 { width: 110px; height: 110px; }
+    .planet3 { width: 9px; height: 9px; animation: orbit3 10s linear infinite; }
+
+    @keyframes orbit1 {
+      0%   { transform: rotate(0deg) translateX(24px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(24px) rotate(-360deg); }
+    }
+    @keyframes orbit2 {
+      0%   { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+    }
+    @keyframes orbit3 {
+      0%   { transform: rotate(0deg) translateX(55px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(55px) rotate(-360deg); }
+    }
+
+    .planet::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    }
+    .space.logo-inline {
+      width: 1.5em;
+      height: 1.5em;
+      min-width: 18px;
+      min-height: 18px;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.1em;
+      margin-right: 0.1em;
+      z-index: 1;
+    }
+    .logo-inline .sun {
+      width: 0.28em;
+      height: 0.28em;
+      min-width: 7px;
+      min-height: 7px;
+    }
+    .logo-inline .orbit1 { width: 0.45em; height: 0.45em; min-width: 12px; min-height: 12px; }
+    .logo-inline .planet1 { width: 0.09em; height: 0.09em; min-width: 3px; min-height: 3px; }
+    .logo-inline .orbit2 { width: 0.7em; height: 0.7em; min-width: 16px; min-height: 16px; }
+    .logo-inline .planet2 { width: 0.11em; height: 0.11em; min-width: 4px; min-height: 4px; }
+    .logo-inline .orbit3 { width: 1em; height: 1em; min-width: 22px; min-height: 22px; }
+    .logo-inline .planet3 { width: 0.13em; height: 0.13em; min-width: 4px; min-height: 4px; }
+    .logo-inline .orbit, .logo-inline .planet, .logo-inline .sun {
+      box-sizing: content-box;
+    }
+    @media (max-width: 700px) {
+      .section-content .img-float-right,
+      .section-content .img-float-left {
+        float: none;
+        display: block;
+        margin: 1.1rem auto;
+        max-width: 100%;
+      }
+      .section-content[style*="display:flex"] {
+        flex-direction: column !important;
+        gap: 1.2em !important;
+      }
+      .section-content img {
+        max-width: 100% !important;
+        margin: 0 auto 1.2rem auto !important;
+      }
+    }
+    @keyframes starTwinkle {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
+    }
+    .animated-title {
+      position:relative;
+      display:inline-block;
+      overflow:hidden;
+      color:#111;
+    }
+    .animated-title:after {
+      content:'';
+      display:block;
+      width:0;
+      height:1.2px;
+      background:#111;
+      position:absolute;
+      left:0;bottom:0;
+      transition:width 0.7s cubic-bezier(.77,0,.18,1);
+    }
+    .animated-title.in-view:after {
+      width:100%;
+    }
+    .fact-card {
+      background:#fff;
+      border:1.5px solid #111;
+      border-radius:7px;
+      padding:1.1em 1.7em;
+      min-width:120px;
+      text-align:center;
+      margin-bottom:1em;
+      box-shadow:0 2px 0 #111, 0 0 0 #fff;
+      transition:box-shadow 0.3s;
+    }
+    .fact-card:hover {
+      box-shadow:0 6px 0 #111, 0 0 0 #fff;
+    }
+    .fact-num {
+      font-size:1.7em;
+      font-weight:700;
+      color:#111;
+      margin-bottom:0.2em;
+      font-family:'Space Grotesk',monospace;
+    }
+    .fact-label {
+      font-size:1em;
+      color:#222;
+      font-family:'Space Grotesk',monospace;
+    }
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(.77,0,.18,1), transform 0.8s cubic-bezier(.77,0,.18,1);
+    }
+    .fade-in-section.in-view {
+      opacity: 1;
+      transform: none;
+    }
+    .section-content.card-style {
+      background: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0 0 1.5em 0;
+      margin-bottom: 1.5em;
+    }
+    .section-content.card-style ul {
+      margin-left: 1.2em;
+    }
+    .parallax {
+      will-change: transform;
+      transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+    }
+    .parallax-img {
+      will-change: transform;
+      transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+    }
+    .section-content img:not(.parallax-img), .section-content svg:not(.parallax-img) {
+      transition: none;
+    }
+    .contact-card {
+      background: #fff;
+      border: 2px solid #111;
+      border-radius: 12px;
+      box-shadow: 0 4px 0 #111, 0 0 0 #fff;
+      padding: 2em 2.5em;
+      margin: 2.5em auto 2em auto;
+      max-width: 420px;
+      text-align: center;
+      position: relative;
+    }
+    .contact-card a {
+      color: #18181b;
+      text-decoration: none;
+    }
+    .contact-card a:hover, .contact-card a:active {
+      color: #111;
+      text-decoration: underline;
+    }
+    .fade-in-img {
+      opacity: 0;
+      transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
+    }
+    .fade-in-img.loaded {
+      opacity: 1;
+    }
+    .section-content-img-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 2em;
+      flex-wrap: wrap;
+      margin-bottom: 1.2em;
+    }
+    .section-content-img-row img,
+    .section-content-img-row svg {
+      max-width: 260px;
+      min-width: 140px;
+      width: 100%;
+      height: auto;
+      margin: 0 0 1.2rem 0;
+      flex: 1;
+      display: block;
+      opacity: 1 !important;
+    }
+    .section-content-img-row .img-text {
+      flex: 2;
+      min-width: 220px;
+    }
+    /* Ensure fade-in-img is visible if JS fails */
+    .fade-in-img {
+      opacity: 1;
+      transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
+    }
+    .fade-in-img.loaded {
+      opacity: 1;
+    }
+    @media (max-width: 700px) {
+      .section-content-img-row {
+        flex-direction: column;
+        gap: 1.2em;
+      }
+      .section-content-img-row img,
+      .section-content-img-row svg {
+        max-width: 100% !important;
+        margin: 0 auto 1.2rem auto !important;
+      }
+    }
+    /* Animation for solar system logo */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .space {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: transparent;
+    }
+    .sun {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 24px;
+      height: 24px;
+      background: black;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    }
+    .orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border: 1px dashed rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .planet {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: black;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    .orbit1 { width: 48px; height: 48px; }
+    .planet1 { width: 5px; height: 5px; animation: orbit1 3s linear infinite; }
+
+    .orbit2 { width: 80px; height: 80px; }
+    .planet2 { width: 7px; height: 7px; animation: orbit2 6s linear infinite; }
+
+    .orbit3 { width: 110px; height: 110px; }
+    .planet3 { width: 9px; height: 9px; animation: orbit3 10s linear infinite; }
+
+    @keyframes orbit1 {
+      0%   { transform: rotate(0deg) translateX(24px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(24px) rotate(-360deg); }
+    }
+    @keyframes orbit2 {
+      0%   { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+    }
+    @keyframes orbit3 {
+      0%   { transform: rotate(0deg) translateX(55px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(55px) rotate(-360deg); }
+    }
+
+    .planet::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    }
+    .space.logo-inline {
+      width: 1.5em;
+      height: 1.5em;
+      min-width: 18px;
+      min-height: 18px;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.1em;
+      margin-right: 0.1em;
+      z-index: 1;
+    }
+    .logo-inline .sun {
+      width: 0.28em;
+      height: 0.28em;
+      min-width: 7px;
+      min-height: 7px;
+    }
+    .logo-inline .orbit1 { width: 0.45em; height: 0.45em; min-width: 12px; min-height: 12px; }
+    .logo-inline .planet1 { width: 0.09em; height: 0.09em; min-width: 3px; min-height: 3px; }
+    .logo-inline .orbit2 { width: 0.7em; height: 0.7em; min-width: 16px; min-height: 16px; }
+    .logo-inline .planet2 { width: 0.11em; height: 0.11em; min-width: 4px; min-height: 4px; }
+    .logo-inline .orbit3 { width: 1em; height: 1em; min-width: 22px; min-height: 22px; }
+    .logo-inline .planet3 { width: 0.13em; height: 0.13em; min-width: 4px; min-height: 4px; }
+    .logo-inline .orbit, .logo-inline .planet, .logo-inline .sun {
+      box-sizing: content-box;
+    }
+  </style>
+  <script>
+    // Add a fallback for broken images
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('img').forEach(function(img) {
+        img.onerror = function() {
+          this.classList.add('broken');
+          this.alt = 'Image not found';
+          // Do NOT remove src, just show alt and style
+        };
+      });
+      // Animated stars
+      const stars = document.getElementById('stars');
+      if (stars) {
+        for (let i = 0; i < 60; i++) {
+          const star = document.createElement('div');
+          star.style.position = 'absolute';
+          star.style.width = star.style.height = Math.random() > 0.8 ? '2.5px' : '1.5px';
+          star.style.background = '#fff';
+          star.style.borderRadius = '50%';
+          star.style.opacity = Math.random() * 0.7 + 0.3;
+          star.style.left = Math.random() * 100 + 'vw';
+          star.style.top = Math.random() * 100 + 'px';
+          star.style.boxShadow = '0 0 8px #fff';
+          star.style.animation = `starTwinkle ${2 + Math.random() * 2}s infinite alternate`;
+          stars.appendChild(star);
+        }
+      }
+    });
+    // Remove debris SVG animation
+    (function(){
+      // Do nothing, disables animation
+    })();
+    // Animate section titles underline on scroll
+    function animateTitles() {
+      document.querySelectorAll('.animated-title').forEach(function(el){
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight-40) el.classList.add('in-view');
+      });
+    }
+    window.addEventListener('scroll', animateTitles);
+    window.addEventListener('DOMContentLoaded', animateTitles);
+    // Fade-in/slide-in for all sections
+    function fadeInSections() {
+      document.querySelectorAll('section, .contact-card').forEach(function(sec){
+        const rect = sec.getBoundingClientRect();
+        if(rect.top < window.innerHeight-40) sec.classList.add('in-view');
+      });
+    }
+    window.addEventListener('scroll', fadeInSections);
+    window.addEventListener('DOMContentLoaded', fadeInSections);
+    // Parallax only for main SVGs
+    window.addEventListener('scroll', function() {
+      document.querySelectorAll('.parallax-img').forEach(function(el) {
+        const y = window.scrollY;
+        el.style.transform = `translateY(${y * 0.07}px)`;
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- Minimalistic Back Button -->
+  <a href="index.html" id="back-btn-link" style="text-decoration:none;">
+    <button id="back-btn" aria-label="Back" style="position:fixed;top:18px;left:32px;background:none;border:none;padding:0;z-index:100;cursor:pointer;outline:none;display:flex;align-items:center;gap:2px;">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="18,6 10,14 18,22" stroke="#18181b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span style="font-family:'Space Grotesk','Segoe UI',Arial,sans-serif;font-size:1.01rem;color:#18181b;letter-spacing:0.01em;font-weight:400;opacity:0.85;user-select:none;">Back</span>
+    </button>
+  </a>
+  <script>
+    document.getElementById('back-btn').onclick = function(e) {
+      e.preventDefault();
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = 'index.html';
+      }
+    };
+    document.getElementById('back-btn').onmouseover = function() { this.querySelector('polyline').setAttribute('stroke', '#444'); };
+    document.getElementById('back-btn').onmouseout = function() { this.querySelector('polyline').setAttribute('stroke', '#18181b'); };
+  </script>
+  <div class="container">
+    <div class="hero fade-in-section in-view">
+      <div style="display: flex; align-items: center; justify-content: flex-start; gap: 0.7em; margin-bottom: 2.5em;">
+        <div style="flex-shrink: 0; width: 120px; height: 120px; position: relative;">
+          <div class="space" style="width: 120px; height: 120px; position: relative; background: transparent;">
+            <div class="sun"></div>
+            <div class="orbit orbit1"></div>
+            <div class="planet planet1"></div>
+            <div class="orbit orbit2"></div>
+            <div class="planet planet2"></div>
+            <div class="orbit orbit3"></div>
+            <div class="planet planet3"></div>
+          </div>
+        </div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center;">
+          <div style="display: flex; align-items: center; gap: 0.3em;">
+            <span class="hero-title animated-title" style="text-align: left; margin-bottom: 0.2em; padding-left: 0;">Orbithive</span>
+          </div>
+          <div class="hero-desc" style="text-align: left; margin-bottom: 2.2em;">Autonomous Space Debris Mitigation &amp; Management</div>
+        </div>
+      </div>
+    </div>
+    <section class="fade-in-section">
+      <div class="section-title animated-title">The Problem</div>
+      <div class="section-content-img-row">
+        <div class="img-text">
+          <b>Latest (2024) statistics:</b>
+          <ul>
+            <li>Over 36,500 tracked objects (&gt;10 cm) in orbit (ESA, 2024)</li>
+            <li>1 million+ objects between 1–10 cm</li>
+            <li>130+ million objects &gt;1 mm</li>
+            <li>LEO collision risk: 3–5% per year for active satellites in crowded orbits</li>
+            <li>2023: Russian Cosmos 1408 ASAT test created 1,500+ new trackable debris</li>
+          </ul>
+        </div>
+        <img src="https://raw.githubusercontent.com/sumanone/assets/main/2380fa1f-7a69-4b95-a86c-edd19f2118cb.png" alt="Debris Statistics Visualization" class="fade-in-img">
+      </div>
+      <div class="section-content">
+        <b>Main sources:</b>
+        <ul>
+          <li>Defunct satellites</li>
+          <li>Rocket stage explosions (over 300 known breakup events)</li>
+          <li>Fragmentation from in-orbit collisions (e.g., Iridium-Cosmos 2009, Fengyun-1C 2007)</li>
+          <li>Improper end-of-life disposal</li>
+        </ul>
+        <b>Key Challenges:</b>
+        <ul>
+          <li>7.8 km/s velocity in LEO means even small debris can destroy operational satellites.</li>
+          <li>The Kessler Syndrome is now a compounding reality, not just a theory.</li>
+          <li>Endangered sectors: Telecommunications, navigation (GNSS), climate monitoring, defense systems, and human-rated missions.</li>
+        </ul>
+        <b>Impact:</b>
+        <ul>
+          <li>Cost of replacing destroyed assets: $100M+ per incident</li>
+          <li>Delay in critical services (e.g., Starlink outages from debris avoidance maneuvers)</li>
+          <li>Loss of trust in satellite insurance markets (premiums up 20% since 2021)</li>
+        </ul>
+        <div class="muted" style="clear:both;">Sources: ESA Space Debris Office 2024, NASA ODPO, UNOOSA</div>
+      </div>
+    </section>
+    <section class="fade-in-section">
+      <div class="section-title animated-title">Market & Risk</div>
+      <div class="section-content-img-row" style="align-items:flex-start;">
+        <img src="https://raw.githubusercontent.com/sumanone/assets/main/87c9dcea-b9cd-45e8-a869-0c81cdccbac1.png" alt="Market Opportunity Chart" class="fade-in-img" style="max-width:100%;min-width:320px;width:100%;height:auto;">
+        <div class="img-text">
+          <b>Debris by Orbit Zone (2024):</b>
+          <ul>
+            <li>LEO: 3,400+ tons</li>
+            <li>MEO: 650+ tons</li>
+            <li>GEO: ~1,100 derelict objects</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section-content">
+        <b>Regulatory Momentum:</b>
+        <ul>
+          <li>FCC (U.S.): Post-mission disposal now required within 5 years (was 25)</li>
+          <li>EU: New Space Law (2024) mandates active debris removal for large constellations</li>
+          <li>UN COPUOS: Calls for active debris removal (ADR) integration by 2030</li>
+          <li>Insurance: Premiums up 20% since 2021 due to increased collision risk</li>
+        </ul>
+        <div class="muted" style="clear:both;">Sources: Euroconsult, ESA, FCC, UNOOSA, SpaceNews 2024</div>
+      </div>
+    </section>
+    <section class="fade-in-section">
+      <div class="section-title animated-title">The Orbithive Solution</div>
+      <div class="section-content-img-row">
+        <div class="img-text">
+          <b>Core Technologies</b>
+          <ul>
+            <li><b>Sensor Fusion:</b> LiDAR, IR, Synthetic Aperture Radar (SAR), and optical tracking. Multi-spectral calibration with onboard AI for continuous object detection.</li>
+            <li><b>Autonomous AI Platform:</b> Jetson Orin NX runs deep learning for debris classification. Swarm coordination via custom federated AI protocols. Real-time trajectory prediction and behavioral anomaly detection.</li>
+          </ul>
+        </div>
+        <img src="https://raw.githubusercontent.com/sumanone/assets/main/95454868-1ade-4784-9b7f-6357be69f522.png" alt="Orbithive Architecture Diagram" class="fade-in-img" style="max-width:100%;min-width:320px;width:100%;height:auto;">
+      </div>
+      <div class="section-content">
+        <ul>
+          <li><b>Debris Capture Modules:</b> Electromagnetic Nets (for small metallic debris), Robotic Arms (for precision capture of large derelicts), Tethered Harpoons (kinetic, low-velocity capture for tumbling objects).</li>
+          <li><b>On-Orbit Recycling Unit (ORU):</b> Converts debris into structural elements (e.g., antenna booms, shielding panels). 3D printing of satellite shells using powdered aluminum from debris.</li>
+          <li><b>Ground Station Interface:</b> SwarmNet dashboard with real-time orbit overlays and target engagement. Secure API for satellite operators to request clean-up support.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="fade-in-section">
+      <div class="section-title animated-title">SwarmBot Technical Specs</div>
+      <div class="section-content-img-row">
+        <img src="https://raw.githubusercontent.com/sumanone/assets/main/b6ea3b12-6357-4eef-b5ad-214477f7a7e2.png" alt="SwarmBot 12U Design Image" class="fade-in-img">
+        <div class="img-text">
+          <table style="width:100%;border-collapse:collapse;font-size:1.05rem;background:none;border-radius:0;box-shadow:none;border:none;margin-bottom:1.2rem;">
+            <tr><td><b>Parameter</b></td><td><b>Value</b></td></tr>
+            <tr><td>Size</td><td>12U (34x20x20 cm)</td></tr>
+            <tr><td>Mass</td><td>18.2 kg</td></tr>
+            <tr><td>Propulsion</td><td>Busek BIT-3 Ion Thruster</td></tr>
+            <tr><td>ADCS</td><td>Reaction wheels, Magnetorquers</td></tr>
+            <tr><td>Power</td><td>60W deployable solar + 72Wh Li-ion</td></tr>
+            <tr><td>Radiation Shielding</td><td>Tantalum & Kapton-laminated</td></tr>
+            <tr><td>Onboard Computer</td><td>NVIDIA Jetson Orin NX + Cortex-R5</td></tr>
+            <tr><td>OS</td><td>Hardened RTOS with redundancy</td></tr>
+            <tr><td>Lifetime</td><td>3+ years, self-replenishing swarm</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section class="fade-in-section">
+      <div class="section-title animated-title">Team</div>
+      <ul class="team-list">
+        <li><b>Suman Mandal</b> — Founder & CEO<br><span class="muted">Visionary in autonomous space systems and sustainability.</span></li>
+        <li><b>Dr. Rina Dev</b> — Mission Planning (Ex-ISRO)<br><span class="muted">Expert in multi-orbit rendezvous and payload optimization.</span></li>
+        <li><b>Akash Bose</b> — Systems Architect (DRDO)<br><span class="muted">Specializes in high-reliability embedded systems and propulsion integration.</span></li>
+        <li><b>Elaine Chen</b> — Strategy (Ex-SpaceX)<br><span class="muted">Brings expertise in launch economics and mission growth strategy.</span></li>
+        <li><b>Tanvir Ray</b> — Hardware Engineer (Airbus Defence & Space)<br><span class="muted">Builds resilient, modular CubeSat platforms for harsh environments.</span></li>
+        <li><b>Ishita Rao</b> — Legal Counsel (UN-OOSA Consultant)<br><span class="muted">Tracks international law on orbital jurisdiction and space treaties.</span></li>
+      </ul>
+    </section>
+    <section class="fade-in-section">
+      <div class="section-title animated-title">Future Plans</div>
+      <div class="section-content-img-row" style="align-items:center;gap:1.5em;">
+        <img src="https://raw.githubusercontent.com/sumanone/assets/main/dbe57831-9f3d-44fe-ac80-a01904407590.png" alt="Orbithive Roadmap Timeline" style="max-width:1400px;min-width:320px;width:100%;height:auto;background:transparent;border:none;border-radius:0;box-shadow:none;">
+        <div class="img-text" style="margin:0;">
+          <ul style="text-align:left;max-width:340px;margin:0;">
+            <li><b>2026:</b> LEO full-swarm demo</li>
+            <li><b>2027:</b> SwarmNet v2 with in-orbit manufacturing</li>
+            <li><b>2028:</b> Integration with commercial satellite fleets for joint-cleanup and servicing</li>
+            <li><b>2030:</b> GEO zone expansion, global compliance platform</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="fade-in-section">
+      <div class="section-title animated-title">Debris in Motion</div>
+      <div class="section-content" style="text-align:center;padding:0;">
+        <svg id="debris-orbit" width="480" height="260" viewBox="0 0 320 200" style="display:block;margin:2rem auto 2rem auto;max-width:100%;height:auto;background:#fff;border:1px solid #222;border-radius:8px;" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="160" cy="100" r="38" fill="none" stroke="#111" stroke-width="2"/>
+          <circle cx="160" cy="100" r="32" fill="#fff" stroke="#111" stroke-width="1.5"/>
+          <ellipse cx="160" cy="100" rx="80" ry="60" fill="none" stroke="#222" stroke-dasharray="4 4"/>
+          <g id="debris-group">
+            <circle id="debris1" r="3" fill="#111"/>
+            <rect id="debris2" width="6" height="2" fill="#111" rx="1"/>
+            <circle id="debris3" r="2" fill="#111"/>
+          </g>
+        </svg>
+      </div>
+    </section>
+    <section class="fade-in-section">
+      <div class="section-title animated-title">Key Milestones in Space Debris</div>
+      <div class="section-content" style="text-align:center;padding:0;">
+        <svg width="800" height="100" viewBox="0 0 600 80" style="display:block;margin:2rem auto 2rem auto;max-width:100%;height:auto;background:#fff;border:1px solid #222;border-radius:8px;" xmlns="http://www.w3.org/2000/svg">
+          <line x1="40" y1="40" x2="560" y2="40" stroke="#111" stroke-width="2"/>
+          <circle cx="80" cy="40" r="8" fill="#fff" stroke="#111" stroke-width="2"/>
+          <circle cx="200" cy="40" r="8" fill="#fff" stroke="#111" stroke-width="2"/>
+          <circle cx="320" cy="40" r="8" fill="#fff" stroke="#111" stroke-width="2"/>
+          <circle cx="440" cy="40" r="8" fill="#fff" stroke="#111" stroke-width="2"/>
+          <circle cx="560" cy="40" r="8" fill="#fff" stroke="#111" stroke-width="2"/>
+          <text x="80" y="65" font-size="12" text-anchor="middle" fill="#111">1978</text>
+          <text x="200" y="65" font-size="12" text-anchor="middle" fill="#111">2007</text>
+          <text x="320" y="65" font-size="12" text-anchor="middle" fill="#111">2009</text>
+          <text x="440" y="65" font-size="12" text-anchor="middle" fill="#111">2021</text>
+          <text x="560" y="65" font-size="12" text-anchor="middle" fill="#111">2024</text>
+          <text x="80" y="28" font-size="11" text-anchor="middle" fill="#111">Kessler Syndrome</text>
+          <text x="200" y="28" font-size="11" text-anchor="middle" fill="#111">Fengyun-1C</text>
+          <text x="320" y="28" font-size="11" text-anchor="middle" fill="#111">Iridium-Cosmos</text>
+          <text x="440" y="28" font-size="11" text-anchor="middle" fill="#111">ASAT Test</text>
+          <text x="560" y="28" font-size="11" text-anchor="middle" fill="#111">New EU Law</text>
+        </svg>
+      </div>
+    </section>
+    <section class="fade-in-section">
+      <div class="section-title animated-title">Quick Facts</div>
+      <div class="section-content card-style" style="display:flex;gap:1.5em;flex-wrap:wrap;justify-content:center;">
+        <div class="fact-card">
+          <div class="fact-num">36,500+</div>
+          <div class="fact-label">Objects &gt;10cm in orbit</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-num">7.8 km/s</div>
+          <div class="fact-label">Typical LEO debris speed</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-num">$100M+</div>
+          <div class="fact-label">Cost per lost satellite</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-num">20%</div>
+          <div class="fact-label">Insurance premium rise since 2021</div>
+        </div>
+      </div>
+    </section>
+    <div class="contact-card fade-in-section">
+      <h2>Contact</h2>
+      <p>Interested in partnership, investment, or technical collaboration?</p>
+      <ul>
+        <li>Email: <a href="mailto:info@orbithive.com">info@orbithive.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/company/orbithive" target="_blank" rel="noopener">Orbithive</a></li>
+      </ul>
+    </div>
+  </div>
+  <footer>
+    <!-- Footer is now intentionally left empty or for copyright, etc. -->
+  </footer>
+  <div class="orbithive-quote" style="margin: 2.5em auto 2.5em auto; max-width: 600px; text-align: center; color: #444; font-size: 1.08rem; font-style: italic; font-weight: 400; letter-spacing: 0.01em; opacity: 0.92;">
+    "We believe orbital space is the infrastructure layer of Earth 2.0. It must be secured, mapped, and made reusable — like the roads of the future." — Suman Mandal
+  </div>
+</body>
+</html>
