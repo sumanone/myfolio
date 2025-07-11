@@ -1,52 +1,103 @@
-#My Life, Mine, All Mine
+#I stayed
 
 
-My life—mine,
-all mine—
-but what does that mean
-when I can't always feel it pulsing in my chest?
-Some days it's just dust
-clinging to the edges of an old windowpane,
-waiting for light that never quite arrives.
+I didn’t stay
+for them.
+Or for duty.
+Not even for love.
+I stayed
+because I forgot
+how not to.
 
-I did not ask for this body.
-I did not sign the lease for this name.
-Yet here I am,
-occupying a space I don’t always believe I deserve.
-My hands move, yes—
-but who’s writing the script?
+Do you know what it’s like
+to love someone so much
+That you vanish
+from your own reflection?
+I don’t remember my face.
+Only how your eyes looked
+And the helm.
 
-I walk through corridors of maybe and might-have-been,
-my shadow stretching longer than my story.
-People speak of purpose
-like it’s a fire you carry in your gut.
-But mine flickers,
-small, blue,
-almost gone when the wind sighs too hard.
+I said I’d come back.
+I lied.
+Beautifully.
+The kind of lie
+that leaves a dress hanging
+in a closet.
+Untouched.
 
-I am told: choose joy.
-But joy isn’t a door—
-it’s a lock
-with no key that fits these trembling fingers.
+Tonight,
+the sea speaks in lightning.
+She drags her fingers
+along the hull
+like she’s reading my eulogy
+in Braille.
 
-And still,
-this life is mine.
-All mine.
-To waste, to wonder,
-to bury in silence or scream into the void.
-No one can live it for me.
-No one can suffer it quite the way I do.
-That is the strangest freedom.
+Our song playing,
+For the last time.
+The one you said
+sounded like
+someone remembering
+they were once loved.
 
-I hold it close like a cold stone—
-not warm, but real.
-I whisper to it:
-“You are mine.”
-And even in sorrow,
-there’s something defiant in that.
+This ship
+is no longer a ship.
+It is a mouth
+swallowing prayers.
+A cathedral
+collapsing inward.
 
-Even in the ache,
-I remain.
+Page 2/2:
+
+They’ll say I died
+with honor.
+No.
+I died with your name
+in my lungs.
+So I could breathe you
+once more
+before the ocean
+stitched me shut.
+
+I remember the yellow field.
+You wore sunlight
+like a veil.
+You said,
+Why does Jack always die?
+I said,
+Because Rose floated.
+
+Now I can say
+He didn’t die
+for love.
+He died because
+time doesn’t wait.
+
+I wonder
+if you’ll walk the aisle
+with no one waiting.
+Or sit in a pew
+like a secret
+no one wants to confess.
+I hope
+they don’t play
+this song.
+It’s cursed now.
+
+I’m not afraid
+to die.
+I’ve been disappearing
+for years.
+But what I fear now
+The promises.
+
+The ring I bought,
+I’ll never get to
+give to you.
+Just know:
+in this storm,
+your name is the only thing
+that doesn’t wash away.
+
 
 
 
