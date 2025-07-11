@@ -2,19 +2,19 @@
   {
     "id": 1,
     "title": "Abstract Landscape",
-    "imageUrl": "https://i.imgur.com/FMj8NEZ.jpeg",
+    "imageUrl": "https://raw.githubusercontent.com/yourusername/your-repo/main/homepage/assets/518273793_4108832046100623_914115272458007178_n.jpg",
     "description": "A soft, textured abstract landscape in warm sunset tones."
   },
   {
     "id": 2,
     "title": "Moody City Rain",
-    "imageUrl": "https://i.imgur.com/FMj8NEZ.jpeg",
+    "imageUrl": "https://raw.githubusercontent.com/yourusername/your-repo/main/homepage/assets/517104189_1288512809284014_7739539204505633309_n.jpg",
     "description": "An atmospheric, rainy city scene with reflective neon puddles."
   },
   {
     "id": 3,
     "title": "Charcoal Portrait",
-    "imageUrl": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=700&q=80",
+    "imageUrl": "https://raw.githubusercontent.com/yourusername/your-repo/main/homepage/assets/511667142_741795988271926_8756808440375117387_n.jpg",
     "description": "A meditative charcoal-style portrait capturing expression and shadow."
   },
   {
