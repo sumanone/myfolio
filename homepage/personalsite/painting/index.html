@@ -21,20 +21,27 @@
     .lightbox-zoom-in { animation: zoomIn 0.3s ease-out; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes zoomIn { from { transform: scale(0.95); } to { transform: scale(1); } }
+    .gallery-item {
+      transition: all 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
-<body class="text-gray-800 antialiased">
+<body class="text-gray-800 antialiased bg-[#FAFAF7]">
 
   <!-- Header -->
-  <header class="text-center py-10">
-    <a href="../index.html" class="absolute left-80 top-8 text-sm text-gray-400 hover:text-gray-600 underline">&larr; Back</a>
-    <h1 class="text-3xl font-light tracking-tight">My Art Gallery</h1>
-    <p class="text-sm text-gray-500 mt-1">A collection of moments, strokes, and emotions on canvas.</p>
+  <header class="text-center py-10 relative">
+    <a href="../index.html" class="absolute left-4 top-8 text-sm text-gray-400 hover:text-gray-600 underline">&larr; Back</a>
+    <h1 class="text-4xl font-light tracking-tight">My Art Gallery</h1>
+    <p class="text-base text-gray-500 mt-2">A collection of moments, strokes, and emotions on canvas.</p>
   </header>
 
   <!-- Gallery -->
-  <main class="px-4 sm:px-8 max-w-6xl mx-auto pb-24">
-    <div id="gallery-grid" class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"></div>
+  <main class="px-4 sm:px-8 max-w-7xl mx-auto pb-24">
+    <div id="gallery-grid" class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6"></div>
   </main>
 
   <!-- Lightbox -->
@@ -49,7 +56,7 @@
         </button>
         <div class="max-h-[90vh] overflow-y-auto">
           <img id="lightbox-img" src="" alt="Artwork" class="mx-auto max-h-[75vh] w-auto max-w-full rounded-md"/>
-          <div id="lightbox-caption" class="mt-4 text-gray-700">
+          <div id="lightbox-caption" class="mt-4 text-gray-700 text-center">
             <h3 id="lightbox-title" class="text-lg font-light"></h3>
             <p id="lightbox-description" class="mt-1 text-sm text-gray-600"></p>
           </div>
@@ -62,18 +69,27 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       fetch('paintings.json')
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to load paintings.json');
+          return res.json();
+        })
         .then(data => {
           const galleryGrid = document.getElementById('gallery-grid');
           data.forEach(painting => {
             const item = document.createElement('div');
-            item.className = 'break-inside-avoid cursor-pointer hover:opacity-90 transition';
+            item.className = 'gallery-item break-inside-avoid cursor-pointer rounded-lg overflow-hidden bg-white';
             item.innerHTML = `
-              <img src="${painting.imageUrl}" alt="${painting.title}" class="w-full h-auto rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+              <img src="${painting.imageUrl}" alt="${painting.title}" class="w-full h-auto rounded-lg" loading="lazy"
+              onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=Image+Not+Found';">
             `;
             item.addEventListener('click', () => openLightbox(painting));
             galleryGrid.appendChild(item);
           });
+        })
+        .catch(err => {
+          document.getElementById('gallery-grid').innerHTML =
+            '<p class="text-center text-red-500">Failed to load artworks.</p>';
+          console.error(err);
         });
 
       const lightbox = document.getElementById('lightbox');
