@@ -7,15 +7,9 @@
     "filter": "Personal"
   },
   {
-    "title": "My Op-Ed in Telegraph",
+    "title": "The Gentle Singularity by sam altman",
     "type": "external",
-    "url": "https://drive.google.com/your-file-link",
-    "date": "2025-06-10"
-  },
-  {
-    "title": "Cutout: Protest Story",
-    "type": "image",
-    "image": "cutout1.jpg",
-    "caption": "From Statesman, April 2024"
+    "url": "https://blog.samaltman.com/the-gentle-singularity",
+    "date": "June 11, 2025"
   }
 ]
