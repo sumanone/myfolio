@@ -1,34 +1,10 @@
 [
   {
-    "company": "Example Corp",
-    "position": "Software Engineer",
-    "location": "Remote",
+    "company": "orbithive",
+    "position": "CEO+product developer",
+    "location": "siliguri,india",
     "start_date": "2022-01-01",
-    "end_date": "2024-06-01",
-    "description": "Worked on developing scalable web applications and contributed to team projects using modern JavaScript frameworks."
+    "end_date": "-",
+    "description": "."
   },
-  {
-    "company": "Example Corp",
-    "position": "Software Engineer",
-    "location": "Remote",
-    "start_date": "2022-01-01",
-    "end_date": "2024-06-01",
-    "description": "Worked on developing scalable web applications and contributed to team projects using modern JavaScript frameworks."
-  },
-  {
-    "company": "Example Corp",
-    "position": "Software Engineer",
-    "location": "Remote",
-    "start_date": "2022-01-01",
-    "end_date": "2024-06-01",
-    "description": "Worked on developing scalable web applications and contributed to team projects using modern JavaScript frameworks."
-  },
-  {
-    "company": "Example Corp",
-    "position": "Software Engineer",
-    "location": "Remote",
-    "start_date": "2022-01-01",
-    "end_date": "2024-06-01",
-    "description": "Worked on developing scalable web applications and contributed to team projects using modern JavaScript frameworks."
-  }
 ]
