@@ -6,38 +6,4 @@
     "live": "https://sumanone.github.io/suman",
     "source": "https://github.com/sumanone/suman"
   },
-  {
-    "id": "modal2",
-    "title": "Note Manager Micro SaaS",
-    "description": "Note categorizer and markdown-supported web app. Built with Firebase backend and custom UI logic.",
-    "live": "#",
-    "source": "https://github.com/sumanone/note-manager"
-  },
-  {
-    "id": "modal3",
-    "title": "YouLearn - Curated Learning Platform",
-    "description": "YouLearn is a YouTube-powered education-only video platform designed to recommend only curated content for learners. Built using YouTube Data API and basic ML filtering.",
-    "live": "#",
-    "source": "https://github.com/sumanone/youlearn"
-  }, {
-    "id": "modal1",
-    "title": "Minimal Portfolio Website",
-    "description": "Minimalist responsive site made using only HTML & CSS. Hosted via GitHub Pages.",
-    "live": "https://sumanone.github.io/suman",
-    "source": "https://github.com/sumanone/suman"
-  },
-  {
-    "id": "modal2",
-    "title": "Note Manager Micro SaaS",
-    "description": "Note categorizer and markdown-supported web app. Built with Firebase backend and custom UI logic.",
-    "live": "#",
-    "source": "https://github.com/sumanone/note-manager"
-  },
-  {
-    "id": "modal3",
-    "title": "YouLearn - Curated Learning Platform",
-    "description": "YouLearn is a YouTube-powered education-only video platform designed to recommend only curated content for learners. Built using YouTube Data API and basic ML filtering.",
-    "live": "#",
-    "source": "https://github.com/sumanone/youlearn"
-  }
 ]
